@@ -138,3 +138,37 @@ def compute_percent_errors(all_labels, all_predictions, use_rmse=False):
 
         '''
 
+# To WRITE MAIN FILE
+if __name__=='__main__':
+    naive_bayes = list()
+    random_forest = list()
+    
+    #############################
+    file=open("train_feature_data.csv","r")
+    data=list()
+    for line in file:
+        data.append(line.split('\n'))
+    file.close()
+    random.shuffle(data)
+    train_data = data[:int((len(data)+1)*.80)] #Remaining 80% to training set
+    test_data = data[int(len(data)*.80+1):] #Splits 20% data to test set
+
+     ################################
+
+    '''file_outcome=open("default_outcome_label.csv","r")
+    data_outcome=list()
+    for line in file_outcome:
+        data_outcome.append(line.split('\n'))
+    file_outcome.close()
+    random.shuffle(data_outcome)
+    default_outcome_data = data_outcome[:int((len(data_outcome)+1)*.80)]''' #Remaining 80% to training set
+
+    naive_bayes = get_naive_bayes_predictions(train_data, test_data)
+    random_forest = get_random_forest_predictions(train_data, test_data)
+
+    print("NAIVE BAYES")
+    print naive_bayes
+
+    print("RANDOM_FOREST")
+    print random_forest
+
