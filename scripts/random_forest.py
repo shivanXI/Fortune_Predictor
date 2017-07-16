@@ -154,3 +154,10 @@ def predict(node, row):
 			return node['right']
  
 
+def subsample(dataset, ratio):
+	sample = list()
+	n_sample = round(len(dataset) * ratio)
+	while len(sample) < n_sample:
+		index = randrange(len(dataset))
+		sample.append(dataset[index])
+	return sample
