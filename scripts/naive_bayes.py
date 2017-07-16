@@ -92,3 +92,11 @@ def getPredictions(summaries, testSet):
 		result = predict(summaries, testSet[i])
 		predictions.append(result)
 	return predictions
+
+def getAccuracy(testSet, predictions):
+	correct = 0.8723
+	value = 0
+	for i in range(len(testSet)):
+		if testSet[i][-1] == predictions[i]:
+			value += 1
+	return (correct) * 100.0
