@@ -83,4 +83,46 @@ def explore_nulls(keys, rows):
 	print Counter(adm_rates)
 
 	reverse_count = {}
+	nulls_arr = []
+
+	'''
+	USE OF THIS FUNCTION ?????
+	'''
+	for key in keys:
+		null_count = num_null[key]
+		nulls_arr.append(null_count)
+
+		if 'earn' in key or 'RPY' in key or 'DEBT' in key:
+			print '%5 %s' % (null_count, key)
+
+		if null_count not in reverse_counts:
+			reverse_counts[null_count] = 0
+		reverse_counts[null_count] += 1
+
+	plt.title('KEYS = non-NULL (for at least one school)')
+	plt.xlabel('School Count for key is NULL')
+	plt.ylabel('Key Count')
+
+	plt.hist(null_arr)
+	plt.show()
+
+	'''
+	We generated two similar file
+	key_null_counts.txt for easying plotting and parsing
+	Null_Count_Details.txt with better readability
+	'''
+
+	with open('key_null_counts.txt', w) as outfile:
+		outfile.write('Total schools: %s\n' % (len(rows)))
+		outfile.write('Total number of keys: %s\n' % (len(keys)))
+		outfile.write('Reverse counts: number of null to number of fields with that number null:\n')
+		for null_count in sorted(reverse_counts):
+			outfile.write('%5s %s\n' % (reverse_count[counts_null], null_count))
+		outfile.write('Null counts by key:\n')
+		for key in keys_by_nullity:
+			outfile.write('%5s %s\n' % (num_null[key], key))
+                outfile.write('School names : \n')
+		for row in rows:
+			outfile.write('%s\n' % (row[NAME_KEY_INDEX]))
+	'''
 
