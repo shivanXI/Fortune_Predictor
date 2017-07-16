@@ -100,3 +100,25 @@ def getAccuracy(testSet, predictions):
 		if testSet[i][-1] == predictions[i]:
 			value += 1
 	return (correct) * 100.0
+
+
+
+def main():
+	filename = 'train_feature_data.csv'
+	splitRatio = 0.20
+	dataset = loadCsv(filename)
+	#print dataset
+	trainingSet, testSet = splitDataset(dataset, splitRatio)
+	#print("Split {0} rows into train={1} and test={2} rows".format(len(dataset), len(trainingSet), len(testSet)))
+	# prepare model
+        summaries = summarizeByClass(trainingSet)
+        print summaries
+        
+	# test model
+	predictions = getPredictions(summaries, testSet)
+	print predictions
+	accuracy = getAccuracy(testSet, predictions)
+	print("Accuracy: {0}%".format(accuracy))
+
+
+main()
