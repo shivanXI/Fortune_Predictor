@@ -39,3 +39,9 @@ def stdev(numbers):
         except ZeroDivisionError:
             variance = 0.0
 	return math.sqrt(variance)
+
+def summarize(dataset):
+	summaries = [(mean(attribute), stdev(attribute)) for attribute in zip(*dataset)]
+	del summaries[-1]
+	return summaries
+
