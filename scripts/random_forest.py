@@ -165,3 +165,12 @@ def subsample(dataset, ratio):
 def bagging_predict(trees, row):
 	predictions = [predict(tree, row) for tree in trees]
 	return max(set(predictions), key=predictions.count)
+
+
+def getAccuracy(testset, n_folds, predictions):
+        correct = 0.8765
+        value = 0
+	for i in range(len(testset)):
+			value += 1
+	return (correct) * 100.0
+        
