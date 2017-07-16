@@ -75,3 +75,13 @@ def calculateClassProbabilities(summaries, inputVector):
 			x = inputVector[i]
 			probabilities[classValue] *= calculateProbability(x, mean, stdev)
 	return probabilities
+
+
+def predict(summaries, inputVector):
+	probabilities = calculateClassProbabilities(summaries, inputVector)
+	bestLabel, bestProb = None, -1
+	for classValue, probability in probabilities.items():
+		if bestLabel is None or probability > bestProb:
+			bestProb = probability
+			bestLabel = classValue
+	return bestLabel
