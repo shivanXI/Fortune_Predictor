@@ -107,3 +107,26 @@ def get_naive_bayes_predictions(train, default_outcome, test):
         predictions.append(classifier.predict([test[i]]))
     return predictions
 
+
+
+    
+    
+def get_random_forest_predictions(train, default_outcome, test):
+     train_features = [features for features, labels in train]
+     train_values = np.array(train_features)
+     values = [values for values in default_outcome]
+     outcome_values = np.array(values)
+     predictions = []
+     
+     model = RandomForestClassifier(n_estimators = 14)
+     model.fit(train_values, outcome_values)
+     test_indices = [i for i in xrange(len(test))]
+     for i in test_indices:
+        predictions.append(model.predict([test[i]]))
+
+     return predictions
+
+
+
+
+
