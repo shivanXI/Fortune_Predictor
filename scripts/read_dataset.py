@@ -44,3 +44,16 @@ def get_filtered_rows(data_file_name=DEFAULT_DATASET_NAME, required_keys=DEFAULT
             writer.writerows(keys)
             
     return filtered_rows, keys
+
+if __name__=='__main__':
+    all_rows, keys = get_all_rows()
+    filtered_rows, keys2 = get_filtered_rows()
+    assert keys == keys2
+
+    with open('all_labels.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n')
+            writer.writerows(keys)
+
+    print 'Filter step selected %s of %s rows' % (len(filtered_rows), len(all_rows))
+
+
