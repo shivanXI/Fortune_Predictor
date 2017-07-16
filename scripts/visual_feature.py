@@ -81,3 +81,6 @@ def get_required_features(label_keys = REQUIRED_INCOME_KEYS, univ_keys = UNIVERS
     with open('university_data.csv', 'w') as f:
         writer = csv.writer(f, delimiter=',', lineterminator='\n')
         writer.writerows(univ_data)
+
+if __name__=='__main__':
+    get_required_features()
