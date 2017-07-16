@@ -174,3 +174,12 @@ def getAccuracy(testset, n_folds, predictions):
 			value += 1
 	return (correct) * 100.0
         
+
+def random_forest(train, test, max_depth, min_size, sample_size, n_trees, n_features):
+	trees = list()
+	for i in range(n_trees):
+		sample = subsample(train, sample_size)
+		tree = build_tree(sample, max_depth, min_size, n_features)
+		trees.append(tree)
+	predictions = [bagging_predict(trees, row) for row in test]
+	return(predictions)
