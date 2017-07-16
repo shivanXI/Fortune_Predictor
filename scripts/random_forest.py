@@ -183,3 +183,44 @@ def random_forest(train, test, max_depth, min_size, sample_size, n_trees, n_feat
 		trees.append(tree)
 	predictions = [bagging_predict(trees, row) for row in test]
 	return(predictions)
+
+
+if __name__=='__main__':
+    seed(1)
+
+    # load and prepare data
+    dataset_filename = 'all_feature_data.csv'
+    dataset = load_csv(dataset_filename)
+    prediction = list()
+    #print dataset
+    # convert string attributes to integers
+    #for i in range(0, len(dataset[0])-1):
+            #str_column_to_float(dataset, i)
+    # convert class column to integers
+    str_column_to_int(dataset, len(dataset[0])-1)
+    print dataset
+    prediction.append(dataset)
+    #############################################
+    print "Dataset processing continues...."
+    # evaluate algorithm
+    n_folds = 5
+    max_depth = 10
+    min_size = 1
+    sample_size = 1.0
+    n_features = len(dataset[0])
+    print "Number of optimised feature:"
+    print n_features
+    n_trees  = 120
+    if n_trees >= 1000:
+        n_trees = 1000
+    else:
+        n_trees = 120
+    
+    #scores = evaluate_algorithm(dataset, n_folds, max_depth, min_size, sample_size, n_trees, n_features)
+    n_accuracy = getAccuracy(dataset, n_folds, prediction)
+    print('Trees: %d' % n_trees)
+    #print('Scores: %s' % scores)
+    print('Mean Accuracy: %.3f%%' % n_accuracy) 
+
+    
+
