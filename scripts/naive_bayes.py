@@ -31,3 +31,11 @@ def separateByClass(dataset):
 
 def mean(numbers):
 	return sum(numbers)/float(len(numbers))
+
+def stdev(numbers):
+	avg = mean(numbers)
+	try:
+            variance = sum([pow(x-avg,2) for x in numbers])/float(len(numbers)-1)
+        except ZeroDivisionError:
+            variance = 0.0
+	return math.sqrt(variance)
