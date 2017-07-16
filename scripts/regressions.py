@@ -88,3 +88,22 @@ def get_knn_predictions(train, dev, k=5, weighting='uniform'):
         for i in neighbors:
             predicted_labels += weights[i] * np.array(train[i][1])
         predictions.append(predicted_labels)
+        return predictions
+
+def get_naive_bayes_predictions(train, default_outcome, test):
+    train_features = [features for features, labels in train]
+    
+    train_values = np.array(train_features)
+    
+    values = [values for values in default_outcome]
+    
+    outcome_values = np.array(values)
+    
+    predictions = []
+    classifier = GaussianNB()
+    classifier.fit(train_values, outcome_values)
+    test_indices = [i for i in xrange(len(test))]
+    for i in test_indices:
+        predictions.append(classifier.predict([test[i]]))
+    return predictions
+
