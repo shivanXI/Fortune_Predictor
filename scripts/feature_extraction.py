@@ -22,3 +22,6 @@ def is_prediction_key(key_row):
     if key_row[0] in ['pell_grant_rate', 'PCTFLOAN', 'loan_ever']:
         return True
     return key_row[2] in ['repayment', 'earnings', 'aid']
+
+def is_category(key_row):
+    return not key_row[0] and not key_row[1]
