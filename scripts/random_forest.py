@@ -66,3 +66,13 @@ def evaluate_algorithm(dataset, n_folds, max_depth, min_size, sample_size, n_tre
 		accuracy = accuracy_metric(actual, predicted)
 		scores.append(accuracy)
 	return scores
+
+def test_split(index, value, dataset):
+	left, right = list(), list()
+	for row in dataset:
+		if row[index] < value:
+			left.append(row)
+		else:
+			right.append(row)
+	return left, right
+ 
