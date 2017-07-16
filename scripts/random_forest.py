@@ -12,3 +12,7 @@ def load_csv(filename):
 				continue
 			dataset.append(row)
 	return dataset
+def str_column_to_float(dataset, column):
+	for row in dataset:
+		row[column] = float(row[column].strip())
+ 
