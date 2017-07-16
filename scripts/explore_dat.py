@@ -27,4 +27,27 @@ def explore_nulls(keys, rows):
 				and not is_null(row, pcip_key)
 			)]
 
-	#
+	#counts number of null using inline for loop
+	num_null = {key:0 for key in keys}
+
+	both_debt_and_earnings_count= 0
+	max_key_index = keys.index('RPY_1YR_RT')
+
+	for rows in rows:
+		'''
+		Count the number of non-NULL debt_key and earnings_key rows
+		'''
+		if not (row[debt_key] == 'NULL' or row[debt_key] == 'PrivacySuppressed') and not (
+		row[earnings_key] == 'NULL' or row[earnings_key] == 'PrivacySuppressed'):
+			both_debt_and_earnings_count += 1
+		'''
+		xrange() generate xrange object list - which is non-static
+		instead of range() which generate static list object -resulting in
+		memory overflow.
+
+		xrange(start, stop, step)
+		'''
+
+		for i in xrange(max_key_index):
+			if is_null(row, i):
+				num_null[keys[i]] += 1
