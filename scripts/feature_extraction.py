@@ -46,3 +46,24 @@ def get_categorical_keys(key_rows):
         else:
             print 'ERROR: saw category before key'
     return categorical_keys
+
+def get_non_feature_keys(rows, keys, key_row_lookup):
+    prediction_keys = set([
+        key for key in keys
+        if key in key_row_lookup and is_prediction_key(key_row_lookup[key])
+    ])
+    cohort_size_keys = set([
+        key for key in keys
+        if key.endswith('_N')
+    ])
+    all_null_keys = set([
+        keys[i] for i in xrange(len(keys))
+        if all([is_null(row, i) for row in rows])
+    ])
+    non_numerical_keys = set(['INSTNM', 'STABBR', 'ZIP', 'CITY'])
+
+    non_feature_keys = prediction_keys.union(
+        cohort_size_keys).union(
+        all_null_keys).union(
+        non_numerical_keys)
+    return non_feature_keys
