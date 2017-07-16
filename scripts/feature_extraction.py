@@ -203,3 +203,8 @@ def get_required_label(label_keys=REQUIRED_LABEL_KEY):
     return feature_values
 
 #print get_required_label()
+all_feature = []
+default_outcome_label = []
+all_example = list()
+feature = list()
+labels = []
