@@ -47,3 +47,22 @@ def accuracy_metric(actual, predicted):
 		if actual[i] == predicted[i]:
 			correct += 1
 	return correct / float(len(actual)) * 100.0
+
+
+def evaluate_algorithm(dataset, n_folds, max_depth, min_size, sample_size, n_trees, n_features):
+	folds = cross_validation_split(dataset, n_folds)
+	scores = list()
+	for fold in folds:
+		train_set = list(folds)
+		train_set.remove(fold)
+		train_set = sum(train_set, [])
+		test_set = list()
+		for row in fold:
+			row_copy = list(row)
+			test_set.append(row_copy)
+			row_copy[-1] = None
+		predicted = random_forest(train_set, test_set, max_depth, min_size, sample_size, n_trees, n_features)
+		actual = [row[-1] for row in fold]
+		accuracy = accuracy_metric(actual, predicted)
+		scores.append(accuracy)
+	return scores
