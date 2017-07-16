@@ -161,3 +161,7 @@ def subsample(dataset, ratio):
 		index = randrange(len(dataset))
 		sample.append(dataset[index])
 	return sample
+
+def bagging_predict(trees, row):
+	predictions = [predict(tree, row) for tree in trees]
+	return max(set(predictions), key=predictions.count)
