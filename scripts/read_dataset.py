@@ -28,3 +28,19 @@ def get_all_rows(data_file_name=DEFAULT_DATASET_NAME):
                 rows[i] = rows[i][len(codecs.BOM_UTF8):]
             rows[i] = rows[i].strip().split(',')
         return rows[1:], rows[0]
+
+def get_filtered_rows(data_file_name=DEFAULT_DATASET_NAME, required_keys=DEFAULT_REQUIRED_KEYS, get_unlabeled=True):
+    '''Return all rows that have non-NULL/PrivacySuppressed entries for all required keys.'''
+    all_rows, keys = get_all_rows(data_file_name=data_file_name)
+    required_indices = [keys.index(key) for key in required_keys]
+    filtered_rows = []
+    for row in all_rows:
+        has_null_required = any([is_null(row, i) for i in required_indices])
+        if (get_unlabeled and has_null_required) or ((not get_unlabeled) and (not has_null_required)):
+            filtered_rows.append(row)
+
+    with open('all_labels.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n')
+            writer.writerows(keys)
+            
+    return filtered_rows, keys
