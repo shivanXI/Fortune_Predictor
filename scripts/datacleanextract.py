@@ -12,3 +12,7 @@ REQUIRED_LABEL_KEYS = [
     'PCIP01',
     'MN_EARN_WNE_INC1_P10',
 ]
+
+def is_null(row, key_index, count_private_as_null=False):
+    return row[key_index] == 'NULL' or (count_private_as_null and row[key_index] == 'PrivacySuppressed')
+
