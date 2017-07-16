@@ -226,3 +226,10 @@ default_outcome_label.append(get_required_label())
 print default_outcome_label
 
 
+'''with open('all_feature.csv', 'w') as f:
+    writer = csv.writer(f, delimiter=';', lineterminator='\n')
+    writer.writerows(all_feature)'''
+
+'''with open('default_outcome_label.csv', 'w') as f:
+    writer = csv.writer(f, delimiter=';', lineterminator='\n')
+    writer.writerows(default_outcome_label)'''
