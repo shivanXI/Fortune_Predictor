@@ -51,3 +51,36 @@ def explore_nulls(keys, rows):
 		for i in xrange(max_key_index):
 			if is_null(row, i):
 				num_null[keys[i]] += 1
+	'''
+	lambda is an throw-away(anonymous) function
+	Syntax: lambda argument_list: expressions
+	'''
+	keys_by_nullity = sorted(keys, key = lambda k:num_null[k])
+
+	print '%s of %s schools have the debts and earning fields' % (both_debt_and_earnings_count, len(rows))
+
+	# PREDDEG = ??
+	preddeg_key = keys.index('PREDDEG')
+	preddegs = [row[preddeg_key] for rows in rows]
+
+	# Counter: Used for counting hashable objects
+	print Counter(preddegs)
+
+	# Here we are making seperate list of SAT_scores and Admission rates
+	sat_scores = []
+	adm_rates = []
+	sat_key = keys.index('SAT_AVG')
+	adm_key = keys.index('ADM_RATE')
+
+	# Selecting only non-NULL values
+	for row in rows:
+		if not is_null(row, sat_key):
+			sat_scores.append(row[preddeg_key])
+		if not is_null(row, adm_key):
+			adm_rates.append(row[preddeg_key])
+
+	print Counter(sat_scores)
+	print Counter(adm_rates)
+
+	reverse_count = {}
+
