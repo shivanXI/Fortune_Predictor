@@ -125,4 +125,21 @@ def explore_nulls(keys, rows):
 		for row in rows:
 			outfile.write('%s\n' % (row[NAME_KEY_INDEX]))
 	'''
-
+    
+           with open('Null_Count_Details.txt', w) as outfile:
+		outfile.write('Total schools: %s\n' % (len(rows)))
+		outfile.write('Total number of keys: %s\n' % (len(keys)))
+		outfile.write('Reverse counts: number of null to number of fields with that number null:\n')
+		for null_count in sorted(reverse_counts):
+			outfile.write('%5s %s\n' % (reverse_count[counts_null], null_count))
+		outfile.write('\n Null Counts by KEYS :\n')
+		for key in keys_by_nullity:
+			outfile.write('%5s %s\n' % (num_null[key], key))
+		outfile.write('\n School names')
+		c = 1
+		for row in rows:
+			outfile.write('%s\t' % (row[NAME_KEY_INDEX]))
+			c += 1
+			if c%2 == 0:
+				outfile.write('\n')
+	'''
