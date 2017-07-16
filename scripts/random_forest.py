@@ -75,4 +75,19 @@ def test_split(index, value, dataset):
 		else:
 			right.append(row)
 	return left, right
+
+
+
+ 
+
+def gini_index(groups, class_values):
+	gini = 0.0
+	for class_value in class_values:
+		for group in groups:
+			size = len(group)
+			if size == 0:
+				continue
+			proportion = [row[-1] for row in group].count(class_value) / float(size)
+			gini += (proportion * (1.0 - proportion))
+	return gini
  
