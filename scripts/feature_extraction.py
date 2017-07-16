@@ -25,3 +25,24 @@ def is_prediction_key(key_row):
 
 def is_category(key_row):
     return not key_row[0] and not key_row[1]
+
+
+def get_categorical_keys(key_rows):
+    categorical_keys = {}
+    current_category_key = None
+    current_categories = []
+    for row in key_rows:
+        if current_category_key:
+            if is_category(row):
+                current_categories.append((row[7], row[8]))
+            else:
+                if len(current_categories) > 0:
+                    categorical_keys[current_category_key] = current_categories
+                current_category_key = row[4]
+                current_categories = []
+        elif not is_category(row):
+            current_category_key = row[4]
+            current_categories = []
+        else:
+            print 'ERROR: saw category before key'
+    return categorical_keys
