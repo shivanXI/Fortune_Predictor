@@ -51,3 +51,17 @@ def summarizeByClass(dataset):
 	for classValue, instances in separated.items():
 		summaries[classValue] = summarize(instances)
 	return summaries
+
+
+def calculateProbability(x, mean, stdev):
+    try:
+        exponent = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))
+    except ZeroDivisionError:
+        exponent = 1.0
+
+    try:
+        s = (1 / (math.sqrt(2*math.pi) * stdev)) * exponent
+    except ZeroDivisionError:
+        s = 0
+
+    return s
