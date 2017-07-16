@@ -81,4 +81,7 @@ def get_required_features(label_keys = REQUIRED_LABEL_KEYS):
         writer = csv.writer(f, delimiter=',', lineterminator='\n')
         writer.writerows(features_data)
     
-                
+
+if __name__=='__main__':
+    get_required_features()
+               
