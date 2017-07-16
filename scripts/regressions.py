@@ -128,5 +128,13 @@ def get_random_forest_predictions(train, default_outcome, test):
 
 
 
+def compute_percent_errors(all_labels, all_predictions, use_rmse=False):
+    num_labels = len(all_labels[0])
+    all_errors = [[] for _ in xrange(num_labels)]
+    for labels, predictions in zip(all_labels, all_predictions):
+        '''
+        INCOMPLETE
 
+
+        '''
 
