@@ -216,3 +216,13 @@ labels = []
 #labels2 = get_required_label()
 #privacy_suppressed_values.append([privacy_suppressed_features[key] for key in sorted(privacy_suppressed_features)])
 
+'''all_feature = privacy_suppressed_values
+for i in xrange(len(privacy_suppressed_features)):
+       if privacy_suppressed_features[i] == 'MN_EARN_WNE_INC1_P10':
+           default_outcome_label.append(privacy_suppressed_values[privacy_suppressed_features[i]])'''
+
+default_outcome_label.append(get_required_label())
+#print all_labels[0][2]
+print default_outcome_label
+
+
