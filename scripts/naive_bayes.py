@@ -28,3 +28,6 @@ def separateByClass(dataset):
 			separated[vector[-1]] = []
 		separated[vector[-1]].append(vector)
 	return separated
+
+def mean(numbers):
+	return sum(numbers)/float(len(numbers))
