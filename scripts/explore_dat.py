@@ -143,3 +143,11 @@ def explore_nulls(keys, rows):
 			if c%2 == 0:
 				outfile.write('\n')
 	'''
+
+
+if __name__ == '__main__':
+	with open(DATA_FILENAME, 'r') as data_file:
+		raw_rows = [row for row in csv.reader(data_file)]
+		keys, rows = raw_rows[0], raw_rows[1:]
+		explore_nulls(keys, rows)
+
