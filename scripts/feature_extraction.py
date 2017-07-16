@@ -208,3 +208,11 @@ default_outcome_label = []
 all_example = list()
 feature = list()
 labels = []
+
+#privacy_suppressed_values = list()
+#privacy_suppressed_features = list()
+#all_feature.append(get_examples())
+#all_example, feature, labels, privacy_suppressed_values, privacy_suppressed_features = get_examples()
+#labels2 = get_required_label()
+#privacy_suppressed_values.append([privacy_suppressed_features[key] for key in sorted(privacy_suppressed_features)])
+
