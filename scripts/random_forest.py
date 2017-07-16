@@ -135,5 +135,10 @@ def split(node, max_depth, min_size, n_features, depth):
 	else:
 		node['right'] = get_split(right, n_features)
 		split(node['right'], max_depth, min_size, n_features, depth+1)
+
+ def build_tree(train, max_depth, min_size, n_features):
+	root = get_split(train, n_features)
+	split(root, max_depth, min_size, n_features, 1)
+	return root
  
 
